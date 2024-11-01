@@ -1,5 +1,5 @@
 import {
-    cryptoLib,
+    getCrypto,
     MAX_RANDOM_INT
 } from "velor/utils/platform.mjs";
 import {TimeoutError} from "velor/utils/sync.mjs";
@@ -7,7 +7,7 @@ import {
     MESSAGE_TYPE_RPC_REJECT,
     MESSAGE_TYPE_RPC_REPLY
 } from "../constants.mjs";
-
+const cryptoLib = await getCrypto();
 export class RpcSignalingManager {
     constructor(signaling) {
         this._signaling = signaling;
@@ -15,6 +15,7 @@ export class RpcSignalingManager {
     }
 
     getRpcSync(options = {}) {
+
         let {
             id,
             resolveDelay = 0,

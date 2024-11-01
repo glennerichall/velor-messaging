@@ -1,4 +1,7 @@
-import {cryptoLib, MAX_RANDOM_INT} from "velor/utils/platform.mjs";
+import {
+    getCrypto,
+    MAX_RANDOM_INT
+} from "velor/utils/platform.mjs";
 import {NotImplementedError} from "velor/utils/errors/NotImplementedError.mjs";
 import {
     MESSAGE_CONTENT_BINARY,
@@ -9,6 +12,8 @@ import {
 } from "../constants.mjs";
 
 import {isTypedArray} from "velor/utils/buffer/isTypedArray.mjs";
+
+const cryptoLib = await getCrypto();
 
 export class AbstractMessageBuilder {
     #getId;
