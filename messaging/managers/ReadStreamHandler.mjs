@@ -3,7 +3,7 @@ import {
     isNode,
     MAX_RANDOM_INT,
     randomInt
-} from "velor/utils/platform.mjs";
+} from "velor-utils/utils/platform.mjs";
 
 class ReadableStreamController {
     constructor() {

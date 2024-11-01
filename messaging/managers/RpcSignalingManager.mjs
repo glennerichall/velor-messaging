@@ -1,8 +1,8 @@
 import {
     getCrypto,
     MAX_RANDOM_INT
-} from "velor/utils/platform.mjs";
-import {TimeoutError} from "velor/utils/sync.mjs";
+} from "velor-utils/utils/platform.mjs";
+import {TimeoutError} from "velor-utils/utils/sync.mjs";
 import {
     MESSAGE_TYPE_RPC_REJECT,
     MESSAGE_TYPE_RPC_REPLY

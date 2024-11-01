@@ -3,11 +3,11 @@ import {RpcSignalingManager} from "../messaging/managers/RpcSignalingManager.mjs
 import {
     Synchronizer,
     timeoutAsync
-} from "velor/utils/sync.mjs";
+} from "velor-utils/utils/sync.mjs";
 
 import {MESSAGE_TYPE_RPC_REPLY} from "../messaging/constants.mjs";
 
-import {setupTestContext} from "velor/test/setupTestContext.mjs";
+import {setupTestContext} from "velor-utils/test/setupTestContext.mjs";
 
 const {
     expect,

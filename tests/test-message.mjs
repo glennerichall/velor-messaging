@@ -3,9 +3,9 @@ import {
     MESSAGE_STREAM_END,
     MESSAGE_TYPE_RPC_CALL
 } from "../messaging/constants.mjs";
-import {MAX_RANDOM_INT} from "velor/utils/platform.mjs";
+import {MAX_RANDOM_INT} from "velor-utils/utils/platform.mjs";
 
-import {setupTestContext} from 'velor/test/setupTestContext.mjs';
+import {setupTestContext} from "velor-utils/test/setupTestContext.mjs";
 
 import {MessageWrapper} from "../messaging/message/MessageWrapper.mjs";
 

@@ -1,8 +1,8 @@
 import {
     getCrypto,
     MAX_RANDOM_INT
-} from "velor/utils/platform.mjs";
-import {NotImplementedError} from "velor/utils/errors/NotImplementedError.mjs";
+} from "velor-utils/utils/platform.mjs";
+import {NotImplementedError} from "velor-utils/utils/errors/NotImplementedError.mjs";
 import {
     MESSAGE_CONTENT_BINARY,
     MESSAGE_CONTENT_EMPTY,
@@ -11,7 +11,7 @@ import {
     MESSAGE_TYPE_UNDEFINED
 } from "../constants.mjs";
 
-import {isTypedArray} from "velor/utils/buffer/isTypedArray.mjs";
+import {isTypedArray} from "velor-utils/utils/buffer/isTypedArray.mjs";
 
 const cryptoLib = await getCrypto();
 

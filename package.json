@@ -1,6 +1,6 @@
 {
   "name": "velor-messaging",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "test": "npx playwright test"
   },

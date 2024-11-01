@@ -1,4 +1,4 @@
-import {signData} from "velor/utils/signature.mjs";
+import {signData} from "velor-utils/utils/signature.mjs";
 
 export function getMessageSignature(message) {
     let {buffer} = message;

@@ -1,5 +1,5 @@
-import {NotImplementedError} from "velor/utils/errors/NotImplementedError.mjs";
-import {composeSendRetryStrategy} from "velor/utils/composers/composeSendRetryStrategy.mjs";
+import {NotImplementedError} from "velor-utils/utils/errors/NotImplementedError.mjs";
+import {composeSendRetryStrategy} from "velor-utils/utils/composers/composeSendRetryStrategy.mjs";
 
 
 export class RequestError extends Error {
