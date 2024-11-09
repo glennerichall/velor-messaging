@@ -191,5 +191,4 @@ test.describe('message', () => {
         expect(unpack.array()).to.deep.eq([1, 2, 3, 4, 5, 6, 77, 88]);
         expect(unpack.streamId).to.eq(12);
     })
-
 })
