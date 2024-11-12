@@ -39,7 +39,9 @@ test.describe('RpcSignalingManager', function () {
         const signaling = new Synchronizer();
         const rpc = new RpcSignalingManager(signaling);
 
-        let options = {};
+        let options = {
+            failOnRejection: true
+        };
         const promise = rpc.getRpcSync(options);
 
         rpc.accept({
