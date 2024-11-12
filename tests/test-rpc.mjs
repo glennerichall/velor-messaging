@@ -5,7 +5,7 @@ import {
     timeoutAsync
 } from "velor-utils/utils/sync.mjs";
 
-import {MESSAGE_TYPE_RPC_REPLY} from "../messaging/constants.mjs";
+import {MESSAGE_TYPE_RPC_REJECT, MESSAGE_TYPE_RPC_REPLY} from "../messaging/constants.mjs";
 
 import {setupTestContext} from "velor-utils/test/setupTestContext.mjs";
 
@@ -33,6 +33,50 @@ test.describe('RpcSignalingManager', function () {
 
         let response = await promise;
         expect(response).to.have.property('content', 'toto');
+    })
+
+    test('should throw rejections', async () => {
+        const signaling = new Synchronizer();
+        const rpc = new RpcSignalingManager(signaling);
+
+        let options = {};
+        const promise = rpc.getRpcSync(options);
+
+        rpc.accept({
+            type: MESSAGE_TYPE_RPC_REJECT,
+            repliesTo: options.id,
+            content: new Error('baz')
+        });
+
+        let error;
+        try {
+            let response = await promise;
+        } catch (e) {
+            error = e;
+        }
+        expect(error).to.be.an.instanceof(Error);
+        expect(error.message).to.eq('baz');
+    })
+
+    test('should accept rejections', async () => {
+        const signaling = new Synchronizer();
+        const rpc = new RpcSignalingManager(signaling);
+
+        let options = {
+            failOnRejection: false,
+        };
+        const promise = rpc.getRpcSync(options);
+
+        rpc.accept({
+            type: MESSAGE_TYPE_RPC_REJECT,
+            repliesTo: options.id,
+            content: new Error('baz')
+        });
+
+        let response = await promise;
+        expect(response.type).to.eq(MESSAGE_TYPE_RPC_REJECT);
+        expect(response.content).to.be.an.instanceof(Error);
+        expect(response.content.message).to.eq('baz');
     })
 
     test('should accept multiple replies', async () => {

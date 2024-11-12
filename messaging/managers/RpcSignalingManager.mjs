@@ -7,7 +7,9 @@ import {
     MESSAGE_TYPE_RPC_REJECT,
     MESSAGE_TYPE_RPC_REPLY
 } from "../constants.mjs";
+
 const cryptoLib = await getCrypto();
+
 export class RpcSignalingManager {
     constructor(signaling) {
         this._signaling = signaling;
@@ -19,7 +21,8 @@ export class RpcSignalingManager {
         let {
             id,
             resolveDelay = 0,
-            failOnTimeout = true
+            failOnTimeout = true,
+            failOnRejection = false,
         } = options;
 
         let promise;
@@ -42,6 +45,7 @@ export class RpcSignalingManager {
         this._replies.set(id, {
             id,
             resolveDelay,
+            failOnRejection,
             responses: [],
         });
 
@@ -87,10 +91,15 @@ export class RpcSignalingManager {
             if (accepted) {
                 this._signaling.notify(repliesTo, response);
             } else {
-                if (!(response instanceof Error)) {
-                    response = response.error;
+                if (replies.failOnRejection) {
+                    let error = response;
+                    if (!(error instanceof Error)) {
+                        error = response.error ?? response.content;
+                    }
+                    this._signaling.reject(repliesTo, error);
+                } else {
+                    this._signaling.notify(repliesTo, response);
                 }
-                this._signaling.reject(repliesTo, response);
             }
         } else {
             replies.timeoutId = setTimeout(() => {
